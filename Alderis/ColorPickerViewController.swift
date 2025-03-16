@@ -62,10 +62,15 @@ open class ColorPickerViewController: UIViewController {
 	// A width divisible by 12 (the number of items wide in the swatch).
 	private var finalWidth: CGFloat {
 		if modalPresentationStyle == .popover {
-			return UIFloat(276)
-		} else {
-			return floor(min(UIFloat(300), view.frame.size.width - 30) / 12) * 12
+			return UIFloat(336)
 		}
+		
+		// If Landscape, use the height of the view
+		if view.frame.size.width > view.frame.size.height {			
+			return floor(min(UIFloat(312), view.frame.size.height - 60) / 12) * 12
+		}
+
+		return floor(min(UIFloat(384), view.frame.size.width - 30) / 12) * 12
 	}
 
 	private var isFullScreen: Bool { modalPresentationStyle != .popover }
